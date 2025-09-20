@@ -6,23 +6,16 @@ import {
   ParallaxSection,
   FloatingElement,
 } from "../components/ParallaxComponents";
-          
-          <FloatingElement className="absolute top-40 right-20" amplitude={25} frequency={4000} delay={1000}>
-            <div className="w-16 h-16 bg-gradient-to-br from-purple-200/40 to-indigo-200/40 rounded-full backdrop-blur-sm"></div>atedSection";
-import { ParallaxSection, FloatingElement } from "@/components/ParallaxComponents";
-import { TypewriterText, CountUpNumber } from "@/components/TextAnimations";
-import { useScrollPosition, useScrollDirection } from "@/hooks/useScroll";
+import { TypewriterText, CountUpNumber } from "../components/TextAnimations";
+import { useScrollPosition, useScrollDirection } from "../hooks/useScroll";
 
 export default function Home() {
-  const [isLoaded, setIsLoaded] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const scrollY = useScrollPosition();
   const scrollDirection = useScrollDirection();
   const heroRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    setIsLoaded(true);
-    
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
@@ -424,7 +417,7 @@ export default function Home() {
                   <div className="bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl p-8 text-white">
                     <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
                     <p className="text-blue-100 leading-relaxed">
-                      Whether you are looking to refresh your existing company's
+                      Whether you are looking to refresh your existing company&apos;s
                       online presence or to create whole new digital platform,
                       we are available round the clock to address your needs.
                     </p>
@@ -445,7 +438,7 @@ export default function Home() {
               Client Testimonials
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Here's what our satisfied clients say about our services
+              Here&apos;s what our satisfied clients say about our services
             </p>
           </AnimatedSection>
 
@@ -454,9 +447,9 @@ export default function Home() {
               <div className="bg-gray-50 rounded-xl p-8 shadow-sm hover:shadow-md transition-all duration-300">
                 <div className="text-yellow-400 mb-4">★★★★★</div>
                 <p className="text-gray-700 mb-6 italic">
-                  "Working with Website expertz was breeze. Their time to
+                  &ldquo;Working with Website expertz was breeze. Their time to
                   respond on email queries was exceptional, and they delivered
-                  as per the commitment."
+                  as per the commitment.&rdquo;
                 </p>
                 <div className="font-semibold text-gray-900">Ryan Reid</div>
                 <div className="text-sm text-gray-600">EMC</div>
@@ -467,9 +460,9 @@ export default function Home() {
               <div className="bg-gray-50 rounded-xl p-8 shadow-sm hover:shadow-md transition-all duration-300">
                 <div className="text-yellow-400 mb-4">★★★★★</div>
                 <p className="text-gray-700 mb-6 italic">
-                  "Great response from everyone who saw the website... the
+                  &ldquo;Great response from everyone who saw the website... the
                   website is extremely professional, appealing and very
-                  user-friendly."
+                  user-friendly.&rdquo;
                 </p>
                 <div className="font-semibold text-gray-900">Paula Thomas</div>
                 <div className="text-sm text-gray-600">Business Owner</div>
@@ -480,8 +473,8 @@ export default function Home() {
               <div className="bg-gray-50 rounded-xl p-8 shadow-sm hover:shadow-md transition-all duration-300">
                 <div className="text-yellow-400 mb-4">★★★★★</div>
                 <p className="text-gray-700 mb-6 italic">
-                  "Amazing Delivery! I am wowed by their commitment to quality
-                  and customers. Very responsive and dedicated team."
+                  &ldquo;Amazing Delivery! I am wowed by their commitment to quality
+                  and customers. Very responsive and dedicated team.&rdquo;
                 </p>
                 <div className="font-semibold text-gray-900">James Warner</div>
                 <div className="text-sm text-gray-600">United Kingdom</div>
@@ -492,9 +485,9 @@ export default function Home() {
               <div className="bg-gray-50 rounded-xl p-8 shadow-sm hover:shadow-md transition-all duration-300">
                 <div className="text-yellow-400 mb-4">★★★★★</div>
                 <p className="text-gray-700 mb-6 italic">
-                  "Nice Work folks! You guys went beyond the call of duty to
+                  &ldquo;Nice Work folks! You guys went beyond the call of duty to
                   deliver my app. My sincere appreciation for an amazing
-                  delivery!"
+                  delivery!&rdquo;
                 </p>
                 <div className="font-semibold text-gray-900">Juliana Mello</div>
                 <div className="text-sm text-gray-600">Brazil</div>
@@ -505,9 +498,9 @@ export default function Home() {
               <div className="bg-gray-50 rounded-xl p-8 shadow-sm hover:shadow-md transition-all duration-300">
                 <div className="text-yellow-400 mb-4">★★★★★</div>
                 <p className="text-gray-700 mb-6 italic">
-                  "Great work Team. Constant communication was of great help.
+                  &ldquo;Great work Team. Constant communication was of great help.
                   Absolute transparency! Will use you guys for my future
-                  projects as well."
+                  projects as well.&rdquo;
                 </p>
                 <div className="font-semibold text-gray-900">Mark Thomas</div>
                 <div className="text-sm text-gray-600">Bahamas</div>
@@ -525,7 +518,7 @@ export default function Home() {
         <div className="container mx-auto px-6 text-center">
           <AnimatedSection>
             <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight">
-              Let's Create Your
+              Let&apos;s Create Your
               <br />
               Virtual World
               <span className="text-yellow-400">.</span>
@@ -533,7 +526,7 @@ export default function Home() {
 
             <p className="text-xl md:text-2xl text-blue-100 mb-12 max-w-3xl mx-auto">
               Ready to take your business online? Get a free quote today and
-              let's discuss your project.
+              let&apos;s discuss your project.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">

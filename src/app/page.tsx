@@ -1,18 +1,11 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
-import { useScrollPosition, useScrollDirection } from "../hooks/useScroll";
-import { AnimatedSection } from "../components/AnimatedSection";
-import {
-  ParallaxSection,
-  FloatingElement,
-} from "../components/ParallaxComponents";
+import { useRef } from "react";
 import { TypewriterText, CountUpNumber } from "../components/TextAnimations";
 import {
   GlassCard,
   MagneticButton,
   Hover3DCard,
-  NeonText,
   LiquidButton,
 } from "../components/PremiumUIComponents";
 import {
@@ -23,25 +16,7 @@ import {
 import { EnhancedNav, FloatingNavDots } from "../components/EnhancedNavigation";
 
 export default function Home() {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const scrollY = useScrollPosition();
-  const scrollDirection = useScrollDirection();
   const heroRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    setIsLoaded(true);
-
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, []);
 
   return (
     <div className="min-h-screen bg-orange-50 text-gray-900 relative overflow-hidden">

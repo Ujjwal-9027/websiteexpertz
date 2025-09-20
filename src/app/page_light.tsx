@@ -10,15 +10,12 @@ import { TypewriterText, CountUpNumber } from "@/components/TextAnimations";
 import { useScrollPosition, useScrollDirection } from "@/hooks/useScroll";
 
 export default function Home() {
-  const [isLoaded, setIsLoaded] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const scrollY = useScrollPosition();
   const scrollDirection = useScrollDirection();
   const heroRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    setIsLoaded(true);
-
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
@@ -464,7 +461,7 @@ export default function Home() {
                       ))}
                     </div>
                     <p className="text-gray-600 mb-6 italic leading-relaxed">
-                      "{testimonial.text}"
+                      &ldquo;{testimonial.text}&rdquo;
                     </p>
                     <div className="border-t border-gray-200 pt-4">
                       <h4 className="font-bold text-gray-800">
@@ -490,11 +487,11 @@ export default function Home() {
           <AnimatedSection>
             <div className="text-center mb-16">
               <h2 className="text-5xl font-bold bg-gradient-to-r from-gray-800 to-blue-600 bg-clip-text text-transparent mb-6">
-                Let's Build Something Amazing
+                Let&apos;s Build Something Amazing
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Ready to transform your digital presence? Get in touch with us
-                and let's discuss your next project.
+                and let&apos;s discuss your next project.
               </p>
             </div>
           </AnimatedSection>

@@ -1,0 +1,312 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Smooth scrolling optimization */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+/* Premium CSS Effects */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+@keyframes float-fast {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-30px) rotate(360deg); }
+}
+
+@keyframes morph {
+  0% { border-radius: 20% 50% 20% 50%; }
+  25% { border-radius: 50% 20% 50% 20%; }
+  50% { border-radius: 30% 70% 30% 70%; }
+  75% { border-radius: 70% 30% 70% 30%; }
+  100% { border-radius: 20% 50% 20% 50%; }
+}
+
+@keyframes glow {
+  0%, 100% { 
+    text-shadow: 0 0 5px rgba(251, 146, 60, 0.5),
+                 0 0 10px rgba(251, 146, 60, 0.3),
+                 0 0 15px rgba(251, 146, 60, 0.2);
+  }
+  50% { 
+    text-shadow: 0 0 10px rgba(154, 52, 18, 0.6),
+                 0 0 20px rgba(154, 52, 18, 0.4),
+                 0 0 30px rgba(154, 52, 18, 0.3);
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes ripple {
+  0% { transform: scale(0); opacity: 1; }
+  100% { transform: scale(4); opacity: 0; }
+}
+
+/* Animation classes */
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+.animate-float-fast {
+  animation: float-fast 4s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 3s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Glassmorphism utilities */
+.glass {
+  backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glass-dark {
+  backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Neon effects */
+.neon-orange {
+  box-shadow: 0 0 5px #fb923c, 0 0 10px #fb923c, 0 0 15px #fb923c, 0 0 20px #fb923c;
+}
+
+.neon-orange-dark {
+  box-shadow: 0 0 5px #9a3412, 0 0 10px #9a3412, 0 0 15px #9a3412, 0 0 20px #9a3412;
+}
+
+/* Hover effects */
+.hover-lift {
+  transition: all 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 30px rgba(251, 146, 60, 0.4);
+}
+
+/* Gradient backgrounds */
+.gradient-bg-1 {
+  background: #fb923c;
+}
+
+.gradient-bg-2 {
+  background: #9a3412;
+}
+
+.gradient-bg-3 {
+  background: #ea580c;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #fb923c;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9a3412;
+}
+
+/* Essential animations only */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Performance optimized animations */
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Focus and accessibility */
+button:focus,
+a:focus,
+input:focus,
+textarea:focus {
+  outline: 2px solid #fb923c;
+  outline-offset: 2px;
+}
+
+/* Smooth transitions for interactive elements */
+button,
+a,
+input,
+textarea {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Remove transform3d for better performance on some devices */
+* {
+  transform-style: flat;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Mobile-specific optimizations */
+@media screen and (max-width: 768px) {
+  /* Reduce complex animations on mobile for better performance */
+  .animate-float-slow,
+  .animate-float-fast {
+    animation: none;
+  }
+  
+  /* Simplify transform effects on mobile */
+  .hover-lift:hover {
+    transform: translateY(-4px) scale(1.01);
+  }
+  
+  /* Optimize touch interactions */
+  * {
+    -webkit-tap-highlight-color: rgba(251, 146, 60, 0.3);
+  }
+  
+  /* Improve scrolling performance */
+  body {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+  }
+  
+  /* Reduce backdrop blur complexity on mobile */
+  .glass {
+    backdrop-filter: blur(8px) saturate(150%);
+  }
+  
+  /* Optimize button interactions for touch */
+  button, a {
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  /* Remove hover effects on touch devices */
+  .hover-lift:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .hover-glow:hover {
+    box-shadow: none;
+  }
+  
+  /* Optimize for touch interactions */
+  button, 
+  a, 
+  [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* High DPI mobile screens */
+@media screen and (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
+  /* Optimize for retina mobile screens */
+  .glass {
+    backdrop-filter: blur(6px) saturate(120%);
+  }
+}
+
+/* Landscape mobile optimization */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+  /* Reduce vertical spacing in landscape mode */
+  .py-8 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  
+  .py-12 {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+}

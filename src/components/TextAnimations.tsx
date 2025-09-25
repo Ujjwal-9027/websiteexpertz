@@ -78,6 +78,90 @@ interface CountUpProps {
   prefix?: string;
 }
 
+interface WordTypewriterProps {
+  words: string[];
+  speed?: number;
+  delay?: number;
+  className?: string;
+  highlightWords?: number[];
+  highlightColor?: string;
+  onComplete?: () => void;
+}
+
+export const WordTypewriter = ({
+  words,
+  speed = 500,
+  delay = 0,
+  className = "",
+  highlightWords = [],
+  highlightColor = "text-cyan-400",
+  onComplete,
+}: WordTypewriterProps) => {
+  const [displayWords, setDisplayWords] = useState<string[]>([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isVisible) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, [isVisible]);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
+    const timer = setTimeout(
+      () => {
+        if (currentIndex < words.length) {
+          setDisplayWords(words.slice(0, currentIndex + 1));
+          setCurrentIndex(currentIndex + 1);
+        } else if (onComplete) {
+          onComplete();
+        }
+      },
+      currentIndex === 0 ? delay : speed
+    );
+
+    return () => clearTimeout(timer);
+  }, [currentIndex, words, speed, delay, isVisible, onComplete]);
+
+  return (
+    <div ref={ref} className={`${className} block w-full`}>
+      {displayWords.map((word, index) => (
+        <span key={index}>
+          <span
+            className={`${
+              highlightWords.includes(index) ? highlightColor : ""
+            } inline-block transform transition-all duration-300 hover:scale-105`}
+          >
+            {word}
+          </span>
+          {index < displayWords.length - 1 && <span> </span>}
+        </span>
+      ))}
+      {currentIndex < words.length && (
+        <span className="animate-pulse ml-1 text-cyan-400">|</span>
+      )}
+    </div>
+  );
+};
+
 export const CountUpNumber = ({
   end,
   duration = 2000,

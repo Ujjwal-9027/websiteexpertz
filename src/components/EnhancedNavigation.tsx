@@ -62,93 +62,88 @@ export const EnhancedNav = ({ className = "" }: EnhancedNavProps) => {
   return (
     <>
       {/* Progress bar */}
-      <div className="fixed top-0 left-0 w-full h-1 z-50 bg-gray-200/30">
+      <div className="fixed top-0 left-0 w-full h-1 z-50 bg-black">
         <div
-          className="h-full bg-orange-600 transition-all duration-300"
+          className="h-full bg-cyan-400 transition-all duration-300"
           style={{ width: `${scrollProgress}%` }}
         />
       </div>
 
-      {/* Navigation */}
+      {/* Sticky Navigation */}
       <nav
         className={`
         fixed top-0 left-0 right-0 z-40 transition-all duration-500
-        ${isScrolled ? "glass py-2" : "bg-transparent py-4"}
+        ${
+          isScrolled
+            ? "bg-slate-900/95 backdrop-blur-md shadow-lg py-2 sm:py-3 border-b border-blue-400/20"
+            : "bg-slate-900/90 backdrop-blur-sm py-3 sm:py-4"
+        }
         ${className}
       `}
       >
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between">
             {/* Logo */}
             <div
-              className="flex items-center space-x-2 text-lg sm:text-xl font-bold cursor-pointer"
+              className="flex items-center space-x-2 text-lg sm:text-xl md:text-2xl font-heading font-bold cursor-pointer"
               onClick={() => scrollToSection("#home")}
             >
-              <span
-                className={`transition-colors duration-300 ${
-                  isScrolled ? "text-orange-800" : "text-orange-800"
-                }`}
-              >
-                Website Expertz
-              </span>
+              <span className="text-blue-400">Website Expertz</span>
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-1">
+            <div className="hidden md:flex items-center space-x-4 lg:space-x-8">
               {navItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.href)}
                   className={`
-                    relative px-4 py-2 rounded-full font-medium transition-all duration-300
-                    hover:bg-white/10 hover:backdrop-blur-sm text-sm sm:text-base
+                    relative px-3 py-2 font-medium transition-all duration-300 text-sm lg:text-base min-h-[44px]
                     ${
                       activeSection === item.id
-                        ? "text-orange-600 bg-white/20 backdrop-blur-sm"
-                        : `${
-                            isScrolled ? "text-orange-800" : "text-orange-800"
-                          } hover:text-orange-600`
+                        ? "text-blue-400"
+                        : "text-slate-200 hover:text-blue-400"
                     }
                   `}
                 >
                   {item.label}
                   {activeSection === item.id && (
-                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-orange-600 rounded-full" />
+                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full h-0.5 bg-blue-400" />
                   )}
                 </button>
               ))}
             </div>
 
             {/* CTA Button */}
-            <div className="hidden md:flex items-center space-x-4">
+            <div className="hidden lg:flex items-center space-x-4">
               <MagneticButton
                 variant="primary"
-                className="px-4 py-2 sm:px-6 sm:py-3 text-sm min-h-[44px]"
+                className="px-4 py-2 lg:px-6 lg:py-3 text-xs lg:text-sm bg-blue-500 hover:bg-blue-400 text-white rounded-lg min-h-[44px] font-semibold shadow-lg shadow-blue-500/30"
               >
-                Get Quote
+                Free Consultation
               </MagneticButton>
             </div>
 
             {/* Mobile menu button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden relative w-10 h-10 flex flex-col justify-center items-center space-y-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-600/50 transition-all duration-300"
+              className="lg:hidden relative w-12 h-12 flex flex-col justify-center items-center space-y-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400/50 transition-all duration-300 bg-black/50 border border-cyan-400/30"
               aria-label="Toggle mobile menu"
             >
               <span
-                className={`w-6 h-0.5 transition-all duration-300 ${
-                  isScrolled ? "bg-orange-800" : "bg-orange-800"
-                } ${isMobileMenuOpen ? "rotate-45 translate-y-1.5" : ""}`}
+                className={`w-6 h-0.5 transition-all duration-300 bg-white ${
+                  isMobileMenuOpen ? "rotate-45 translate-y-1.5" : ""
+                }`}
               />
               <span
-                className={`w-6 h-0.5 transition-all duration-300 ${
-                  isScrolled ? "bg-orange-800" : "bg-orange-800"
-                } ${isMobileMenuOpen ? "opacity-0" : ""}`}
+                className={`w-6 h-0.5 transition-all duration-300 bg-white ${
+                  isMobileMenuOpen ? "opacity-0" : ""
+                }`}
               />
               <span
-                className={`w-6 h-0.5 transition-all duration-300 ${
-                  isScrolled ? "bg-orange-800" : "bg-orange-800"
-                } ${isMobileMenuOpen ? "-rotate-45 -translate-y-1.5" : ""}`}
+                className={`w-6 h-0.5 transition-all duration-300 bg-white ${
+                  isMobileMenuOpen ? "-rotate-45 -translate-y-1.5" : ""
+                }`}
               />
             </button>
           </div>
@@ -157,34 +152,34 @@ export const EnhancedNav = ({ className = "" }: EnhancedNavProps) => {
         {/* Mobile menu */}
         <div
           className={`
-          md:hidden absolute top-full left-0 right-0 glass backdrop-blur-xl bg-white/95 border-b border-white/20
+          lg:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-md border-t border-cyan-400
           transition-all duration-300 transform origin-top z-50
           ${
             isMobileMenuOpen ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0"
           }
         `}
         >
-          <div className="px-4 py-6 space-y-2">
+          <div className="px-4 py-4 space-y-1">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.href)}
                 className={`
-                  block w-full text-left px-4 py-4 rounded-xl font-medium transition-all duration-300 min-h-[44px]
+                  block w-full text-left px-4 py-3 rounded-lg font-medium transition-all duration-300 min-h-[48px] text-base
                   ${
                     activeSection === item.id
-                      ? "text-orange-600 bg-orange-50 border border-orange-200"
-                      : "text-gray-800 hover:text-orange-600 hover:bg-orange-50"
+                      ? "text-cyan-400 bg-black/70 border border-cyan-400"
+                      : "text-white hover:text-cyan-400 hover:bg-black/50"
                   }
                 `}
               >
                 {item.label}
               </button>
             ))}
-            <div className="pt-4 border-t border-gray-200">
+            <div className="pt-3 border-t border-cyan-400/30 mt-3">
               <MagneticButton
                 variant="primary"
-                className="w-full py-4 min-h-[44px]"
+                className="w-full py-3 min-h-[48px] bg-cyan-400 hover:bg-cyan-300 text-black rounded-lg font-semibold text-base"
               >
                 Get Quote
               </MagneticButton>
@@ -196,7 +191,7 @@ export const EnhancedNav = ({ className = "" }: EnhancedNavProps) => {
       {/* Mobile menu overlay */}
       {isMobileMenuOpen && (
         <div
-          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-30 md:hidden"
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-30 lg:hidden"
           onClick={() => setIsMobileMenuOpen(false)}
         />
       )}
@@ -248,24 +243,29 @@ export const FloatingNavDots = () => {
   };
 
   return (
-    <div className="fixed right-6 top-1/2 transform -translate-y-1/2 z-30 hidden lg:block">
-      <div className="flex flex-col space-y-3 glass rounded-full p-3">
+    <div className="fixed right-4 xl:right-6 top-1/2 transform -translate-y-1/2 z-30 hidden xl:block">
+      <div className="flex flex-col space-y-2 bg-black/80 rounded-full p-2 border border-cyan-400">
         {sections.map((section) => (
           <button
             key={section.id}
             onClick={() => scrollToSection(section.id)}
             className={`
-              relative group w-3 h-3 rounded-full transition-all duration-300
+              relative group w-3 h-3 rounded-full transition-all duration-300 min-h-[44px] min-w-[44px] flex items-center justify-center
               ${
                 activeSection === section.id
-                  ? "bg-orange-600 scale-125"
-                  : "bg-gray-400 hover:bg-orange-400 hover:scale-110"
+                  ? "bg-cyan-400 scale-125"
+                  : "bg-white hover:bg-cyan-400 hover:scale-110"
               }
             `}
             title={section.label}
           >
+            <div
+              className={`w-2 h-2 rounded-full ${
+                activeSection === section.id ? "bg-black" : "bg-current"
+              }`}
+            />
             {/* Tooltip */}
-            <span className="absolute right-6 top-1/2 transform -translate-y-1/2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+            <span className="absolute right-6 top-1/2 transform -translate-y-1/2 px-2 py-1 bg-black text-cyan-400 text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap border border-cyan-400">
               {section.label}
             </span>
           </button>

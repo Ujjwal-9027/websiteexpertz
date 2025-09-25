@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 // Glassmorphism Card Component
 interface GlassCardProps {
@@ -58,7 +58,7 @@ export const GlassCard = ({
       <div className="relative z-10">{children}</div>
 
       {/* Glow effect */}
-      <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-orange-600/20 blur-xl"></div>
+      <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-cyan-400/20 blur-xl"></div>
     </div>
   );
 };
@@ -97,16 +97,16 @@ export const MagneticButton = ({
 
   const variantStyles = {
     primary: `
-      bg-orange-800 
-      text-white shadow-lg hover:shadow-orange-500/50 hover:bg-orange-700
+      bg-cyan-400 
+      text-black shadow-lg hover:shadow-cyan-400/50 hover:bg-cyan-300
     `,
     secondary: `
       bg-white/10 backdrop-blur-sm border border-white/20 
-      text-gray-800 hover:text-white hover:bg-orange-600
+      text-white hover:text-black hover:bg-cyan-400
     `,
     neon: `
-      bg-transparent border-2 border-orange-600 text-orange-600
-      hover:bg-orange-600 hover:text-white hover:shadow-orange-600/50
+      bg-transparent border-2 border-cyan-400 text-cyan-400
+      hover:bg-cyan-400 hover:text-black hover:shadow-cyan-400/50
     `,
   };
 
@@ -114,11 +114,11 @@ export const MagneticButton = ({
     <button
       ref={buttonRef}
       className={`
-        relative px-6 py-3 sm:px-8 sm:py-4 rounded-full font-semibold
+        relative px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 rounded-full font-semibold
         transition-all duration-300 transform-gpu
         hover:scale-105 active:scale-95
         overflow-hidden group
-        min-h-[44px] min-w-[44px]
+        min-h-[48px] min-w-[48px] text-sm sm:text-base
         ${variantStyles[variant]}
         ${className}
       `}
@@ -230,8 +230,9 @@ export const NeonText = ({
     <div
       className={`
       ${colorStyles[color]}
-      drop-shadow-[0_0_10px_currentColor]
-      hover:drop-shadow-[0_0_20px_currentColor]
+      text-sm sm:text-base md:text-lg
+      drop-shadow-[0_0_8px_currentColor] sm:drop-shadow-[0_0_10px_currentColor]
+      hover:drop-shadow-[0_0_15px_currentColor] sm:hover:drop-shadow-[0_0_20px_currentColor]
       transition-all duration-300
       ${className}
     `}
@@ -257,18 +258,18 @@ export const LiquidButton = ({
     <button
       onClick={onClick}
       className={`
-        relative px-6 py-3 sm:px-8 sm:py-4 rounded-full font-semibold
-        bg-orange-600
-        text-white overflow-hidden group
+        relative px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 rounded-full font-semibold
+        bg-cyan-400
+        text-black overflow-hidden group
         transition-all duration-500
-        hover:scale-105 active:scale-95 hover:bg-orange-700
-        min-h-[44px] min-w-[44px]
+        hover:scale-105 active:scale-95 hover:bg-cyan-300
+        min-h-[48px] min-w-[48px] text-sm sm:text-base
         ${className}
       `}
     >
       {/* Liquid effect */}
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-        <div className="absolute inset-0 bg-orange-800 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left"></div>
+        <div className="absolute inset-0 bg-cyan-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left"></div>
       </div>
 
       {/* Bubble effects */}
@@ -295,22 +296,262 @@ export const LiquidButton = ({
 // Morphing Shape
 export const MorphingShape = () => {
   return (
-    <div className="relative w-32 h-32">
-      <div className="absolute inset-0 bg-orange-600 rounded-full animate-pulse"></div>
+    <div className="relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32">
+      <div className="absolute inset-0 bg-cyan-400 rounded-full animate-pulse"></div>
       <div
-        className="absolute inset-2 bg-orange-800 animate-spin"
+        className="absolute inset-1 sm:inset-2 bg-cyan-500 animate-spin"
         style={{
           borderRadius: "50% 20% 50% 20%",
           animationDuration: "8s",
         }}
       ></div>
       <div
-        className="absolute inset-4 bg-orange-700"
+        className="absolute inset-2 sm:inset-3 md:inset-4 bg-cyan-300"
         style={{
           borderRadius: "20% 50% 20% 50%",
           animation: "morph 6s ease-in-out infinite alternate",
         }}
       ></div>
     </div>
+  );
+};
+
+// Advanced Particle System
+interface ParticleFieldProps {
+  particleCount?: number;
+  className?: string;
+  color?: string;
+  interactive?: boolean;
+}
+
+export const ParticleField = ({ 
+  particleCount = 50, 
+  className = "",
+  color = "cyan",
+  interactive = true
+}: ParticleFieldProps) => {
+  return (
+    <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
+      {Array.from({ length: particleCount }).map((_, i) => (
+        <div
+          key={i}
+          className={`absolute rounded-full bg-${color}-400/30 animate-float-particle`}
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            width: `${Math.random() * 4 + 2}px`,
+            height: `${Math.random() * 4 + 2}px`,
+            animationDelay: `${Math.random() * 5}s`,
+            animationDuration: `${Math.random() * 10 + 10}s`,
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
+// Floating Elements Component
+interface FloatingElementsProps {
+  children: React.ReactNode;
+  intensity?: 'light' | 'medium' | 'strong';
+  className?: string;
+}
+
+export const FloatingElements = ({ 
+  children, 
+  intensity = 'medium',
+  className = "" 
+}: FloatingElementsProps) => {
+  const intensityMap = {
+    light: 'hover:scale-102 hover:-translate-y-1',
+    medium: 'hover:scale-105 hover:-translate-y-2',
+    strong: 'hover:scale-110 hover:-translate-y-4 hover:rotate-1'
+  };
+
+  return (
+    <div className={`
+      transform transition-all duration-500 ease-out
+      ${intensityMap[intensity]}
+      ${className}
+    `}>
+      {children}
+    </div>
+  );
+};
+
+// Gradient Orb Component
+interface GradientOrbProps {
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  color?: 'cyan' | 'purple' | 'pink' | 'orange';
+  position?: string;
+  blur?: boolean;
+}
+
+export const GradientOrb = ({ 
+  size = 'md', 
+  color = 'cyan',
+  position = '',
+  blur = true 
+}: GradientOrbProps) => {
+  const sizeMap = {
+    sm: 'w-32 h-32',
+    md: 'w-48 h-48',
+    lg: 'w-64 h-64',
+    xl: 'w-96 h-96'
+  };
+
+  const colorMap = {
+    cyan: 'bg-gradient-to-br from-cyan-400 to-cyan-600',
+    purple: 'bg-gradient-to-br from-purple-400 to-purple-600',
+    pink: 'bg-gradient-to-br from-pink-400 to-pink-600',
+    orange: 'bg-gradient-to-br from-orange-400 to-orange-600'
+  };
+
+  return (
+    <div className={`
+      absolute ${position} ${sizeMap[size]} ${colorMap[color]}
+      rounded-full opacity-20 animate-pulse
+      ${blur ? 'blur-3xl' : ''}
+    `} />
+  );
+};
+
+// Advanced Loading Skeleton
+interface SkeletonProps {
+  className?: string;
+  variant?: 'text' | 'card' | 'avatar' | 'button';
+}
+
+export const Skeleton = ({ className = "", variant = 'text' }: SkeletonProps) => {
+  const baseClasses = "animate-pulse bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 bg-[length:200%_100%]";
+  
+  const variantClasses = {
+    text: 'h-4 w-full rounded',
+    card: 'h-48 w-full rounded-lg',
+    avatar: 'h-12 w-12 rounded-full',
+    button: 'h-10 w-24 rounded-full'
+  };
+
+  return (
+    <div className={`${baseClasses} ${variantClasses[variant]} ${className}`} 
+         style={{
+           backgroundImage: 'linear-gradient(90deg, rgba(79, 209, 199, 0.1) 25%, rgba(79, 209, 199, 0.2) 50%, rgba(79, 209, 199, 0.1) 75%)',
+           animation: 'shimmer 2s infinite'
+         }}
+    />
+  );
+};
+
+// Interactive Cursor Follower
+interface CursorFollowerProps {
+  color?: string;
+  size?: number;
+}
+
+export const CursorFollower = ({ color = 'cyan-400', size = 20 }: CursorFollowerProps) => {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const updatePosition = (e: MouseEvent) => {
+      setPosition({ x: e.clientX, y: e.clientY });
+    };
+
+    const handleMouseEnter = () => setIsVisible(true);
+    const handleMouseLeave = () => setIsVisible(false);
+
+    document.addEventListener('mousemove', updatePosition);
+    document.addEventListener('mouseenter', handleMouseEnter);
+    document.addEventListener('mouseleave', handleMouseLeave);
+
+    return () => {
+      document.removeEventListener('mousemove', updatePosition);
+      document.removeEventListener('mouseenter', handleMouseEnter);
+      document.removeEventListener('mouseleave', handleMouseLeave);
+    };
+  }, []);
+
+  return (
+    <div 
+      className={`fixed pointer-events-none z-50 transition-opacity duration-300 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+      style={{
+        left: position.x - size / 2,
+        top: position.y - size / 2,
+        width: size,
+        height: size,
+      }}
+    >
+      <div className={`w-full h-full bg-${color} rounded-full blur-sm opacity-50 animate-pulse`} />
+    </div>
+  );
+};
+
+// Advanced Button with Ripple Effect
+interface RippleButtonProps {
+  children: React.ReactNode;
+  onClick?: () => void;
+  className?: string;
+  variant?: 'primary' | 'secondary' | 'ghost';
+}
+
+export const RippleButton = ({ 
+  children, 
+  onClick, 
+  className = "",
+  variant = 'primary' 
+}: RippleButtonProps) => {
+  const [ripples, setRipples] = useState<Array<{ x: number; y: number; id: number }>>([]);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  const handleClick = (e: React.MouseEvent) => {
+    if (!buttonRef.current) return;
+
+    const rect = buttonRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const newRipple = { x, y, id: Date.now() };
+
+    setRipples(prev => [...prev, newRipple]);
+
+    setTimeout(() => {
+      setRipples(prev => prev.filter(ripple => ripple.id !== newRipple.id));
+    }, 600);
+
+    onClick?.();
+  };
+
+  const variantStyles = {
+    primary: 'bg-cyan-400 hover:bg-cyan-300 text-black',
+    secondary: 'bg-transparent border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-black',
+    ghost: 'bg-transparent text-cyan-400 hover:bg-cyan-400/10'
+  };
+
+  return (
+    <button
+      ref={buttonRef}
+      className={`
+        relative overflow-hidden px-6 py-3 rounded-full font-semibold
+        transition-all duration-300 transform
+        hover:scale-105 active:scale-95
+        ${variantStyles[variant]}
+        ${className}
+      `}
+      onClick={handleClick}
+    >
+      <span className="relative z-10">{children}</span>
+      
+      {ripples.map(ripple => (
+        <span
+          key={ripple.id}
+          className="absolute bg-white/30 rounded-full animate-ripple"
+          style={{
+            left: ripple.x - 10,
+            top: ripple.y - 10,
+            width: 20,
+            height: 20,
+          }}
+        />
+      ))}
+    </button>
   );
 };

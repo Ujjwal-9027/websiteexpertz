@@ -765,8 +765,8 @@ export default function Home() {
         </section>
       </MorphingBackground>
 
-  {/* Testimonials Section - Mobile First */}
-  <section id="testimonials" className="py-12 sm:py-16 lg:py-20 bg-gray-50">
+      {/* Testimonials Section - Mobile First */}
+      <section id="testimonials" className="py-12 sm:py-16 lg:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AdvancedScrollReveal direction="up" delay={0.1}>
             <div className="text-center mb-12 sm:mb-16 lg:mb-20">
@@ -774,8 +774,8 @@ export default function Home() {
                 Real Results From Real Clients
               </h2>
               <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                See how we&apos;ve helped businesses like yours grow their online
-                presence and increase revenue.
+                See how we&apos;ve helped businesses like yours grow their
+                online presence and increase revenue.
               </p>
             </div>
           </AdvancedScrollReveal>
@@ -931,8 +931,8 @@ export default function Home() {
                     Get Your Free Website Audit
                   </h3>
                   <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                    Tell us about your project and we&apos;ll get back to you within
-                    24 hours
+                    Tell us about your project and we&apos;ll get back to you
+                    within 24 hours
                   </p>
                 </div>
 

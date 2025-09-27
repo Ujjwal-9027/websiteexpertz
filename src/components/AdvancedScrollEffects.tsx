@@ -129,8 +129,8 @@ export const ParallaxScroll = ({
 
   const getTransform = () => {
     const movement = scrollY * speed;
-    return direction === "up" 
-      ? `translate3d(0, ${-movement}px, 0)` 
+    return direction === "up"
+      ? `translate3d(0, ${-movement}px, 0)`
       : `translate3d(0, ${movement}px, 0)`;
   };
 
@@ -319,7 +319,8 @@ export const ScrollProgressCircle = ({
 
   useEffect(() => {
     const handleScroll = () => {
-      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const totalScroll =
+        document.documentElement.scrollHeight - window.innerHeight;
       const currentProgress = (window.scrollY / totalScroll) * 100;
       setProgress(Math.min(currentProgress, 100));
     };
@@ -330,11 +331,7 @@ export const ScrollProgressCircle = ({
 
   return (
     <div className={`relative ${className}`}>
-      <svg
-        width={size}
-        height={size}
-        className="transform -rotate-90"
-      >
+      <svg width={size} height={size} className="transform -rotate-90">
         <circle
           cx={size / 2}
           cy={size / 2}
@@ -389,7 +386,10 @@ export const MorphingBackground = ({
 
       const progress = Math.max(
         0,
-        Math.min(1, (windowHeight - elementTop) / (windowHeight + elementHeight))
+        Math.min(
+          1,
+          (windowHeight - elementTop) / (windowHeight + elementHeight)
+        )
       );
 
       setScrollProgress(progress);
@@ -403,10 +403,14 @@ export const MorphingBackground = ({
     const morphPercentage = scrollProgress * 100;
     return {
       background: `
-        radial-gradient(ellipse at ${50 + morphPercentage * 0.5}% ${50 + morphPercentage * 0.3}%, 
+        radial-gradient(ellipse at ${50 + morphPercentage * 0.5}% ${
+        50 + morphPercentage * 0.3
+      }%, 
         rgba(79, 209, 199, ${0.1 + scrollProgress * 0.1}) 0%, 
         transparent 50%),
-        radial-gradient(ellipse at ${50 - morphPercentage * 0.3}% ${50 - morphPercentage * 0.5}%, 
+        radial-gradient(ellipse at ${50 - morphPercentage * 0.3}% ${
+        50 - morphPercentage * 0.5
+      }%, 
         rgba(186, 164, 255, ${0.08 + scrollProgress * 0.1}) 0%, 
         transparent 50%)
       `,

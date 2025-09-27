@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 // Skeleton Loader Component
 interface SkeletonProps {
@@ -16,7 +16,7 @@ export const Skeleton: React.FC<SkeletonProps> = ({
   width = "100%",
   height = variant === "text" ? "1rem" : "2rem",
   animation = "pulse",
-  className = ""
+  className = "",
 }) => {
   const getVariantClasses = () => {
     switch (variant) {
@@ -51,7 +51,9 @@ export const Skeleton: React.FC<SkeletonProps> = ({
 };
 
 // Card Skeleton
-export const CardSkeleton: React.FC<{ className?: string }> = ({ className = "" }) => (
+export const CardSkeleton: React.FC<{ className?: string }> = ({
+  className = "",
+}) => (
   <div className={`space-y-4 p-6 ${className}`}>
     <Skeleton variant="circular" width={60} height={60} />
     <div className="space-y-2">
@@ -79,7 +81,7 @@ export const ProgressiveImage: React.FC<ProgressiveImageProps> = ({
   alt,
   className = "",
   placeholderSrc,
-  blur = true
+  blur = true,
 }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageSrc, setImageSrc] = useState(placeholderSrc || "");
@@ -96,10 +98,10 @@ export const ProgressiveImage: React.FC<ProgressiveImageProps> = ({
   return (
     <div className="relative overflow-hidden">
       {!imageLoaded && (
-        <Skeleton 
-          variant="rectangular" 
-          width="100%" 
-          height="100%" 
+        <Skeleton
+          variant="rectangular"
+          width="100%"
+          height="100%"
           className="absolute inset-0 z-10"
         />
       )}
@@ -107,8 +109,8 @@ export const ProgressiveImage: React.FC<ProgressiveImageProps> = ({
         src={imageSrc}
         alt={alt}
         className={`transition-all duration-700 ${
-          imageLoaded 
-            ? "opacity-100 scale-100" 
+          imageLoaded
+            ? "opacity-100 scale-100"
             : `opacity-0 scale-105 ${blur ? "blur-sm" : ""}`
         } ${className}`}
         onLoad={() => setImageLoaded(true)}
@@ -129,7 +131,7 @@ export const LoadingOverlay: React.FC<LoadingOverlayProps> = ({
   isLoading,
   children,
   message = "Loading...",
-  spinnerVariant = "spinner"
+  spinnerVariant = "spinner",
 }) => {
   const renderSpinner = () => {
     switch (spinnerVariant) {
@@ -164,9 +166,9 @@ export const LoadingOverlay: React.FC<LoadingOverlayProps> = ({
               <div
                 key={i}
                 className="w-2 bg-white rounded-full animate-wave"
-                style={{ 
+                style={{
                   height: `${20 + Math.sin(i * 0.5) * 10}px`,
-                  animationDelay: `${i * 0.1}s` 
+                  animationDelay: `${i * 0.1}s`,
                 }}
               />
             ))}
@@ -208,7 +210,7 @@ export const ContentPlaceholder: React.FC<ContentPlaceholderProps> = ({
   lines = 3,
   showAvatar = false,
   showImage = false,
-  className = ""
+  className = "",
 }) => (
   <div className={`space-y-4 ${className}`}>
     {showAvatar && (
@@ -220,17 +222,15 @@ export const ContentPlaceholder: React.FC<ContentPlaceholderProps> = ({
         </div>
       </div>
     )}
-    
-    {showImage && (
-      <Skeleton height="12rem" className="mb-4" />
-    )}
-    
+
+    {showImage && <Skeleton height="12rem" className="mb-4" />}
+
     <div className="space-y-2">
       {Array.from({ length: lines }, (_, i) => (
-        <Skeleton 
+        <Skeleton
           key={i}
-          variant="text" 
-          width={i === lines - 1 ? "70%" : "100%"} 
+          variant="text"
+          width={i === lines - 1 ? "70%" : "100%"}
         />
       ))}
     </div>
@@ -253,7 +253,7 @@ export const LoadingButton: React.FC<LoadingButtonProps> = ({
   className = "",
   disabled = false,
   onClick,
-  variant = "primary"
+  variant = "primary",
 }) => {
   const getVariantClasses = () => {
     switch (variant) {
@@ -273,11 +273,19 @@ export const LoadingButton: React.FC<LoadingButtonProps> = ({
       className={`
         relative px-6 py-3 rounded-lg font-medium transition-all duration-200
         ${getVariantClasses()}
-        ${(disabled || isLoading) ? "opacity-50 cursor-not-allowed" : "hover:scale-105"}
+        ${
+          disabled || isLoading
+            ? "opacity-50 cursor-not-allowed"
+            : "hover:scale-105"
+        }
         ${className}
       `}
     >
-      <span className={`transition-opacity duration-200 ${isLoading ? "opacity-0" : "opacity-100"}`}>
+      <span
+        className={`transition-opacity duration-200 ${
+          isLoading ? "opacity-0" : "opacity-100"
+        }`}
+      >
         {children}
       </span>
       {isLoading && (
@@ -298,7 +306,7 @@ export const PageSkeleton: React.FC = () => (
       <Skeleton variant="text" width="80%" />
       <Skeleton variant="text" width="40%" />
     </div>
-    
+
     {/* Content grid skeleton */}
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {Array.from({ length: 6 }, (_, i) => (
@@ -318,7 +326,7 @@ interface LazyWrapperProps {
 export const LazyWrapper: React.FC<LazyWrapperProps> = ({
   children,
   fallback = <Skeleton height="10rem" />,
-  delay = 300
+  delay = 300,
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
 

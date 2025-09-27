@@ -1,6 +1,55 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
+
+// Logo Image Component
+interface LogoImageProps {
+  className?: string;
+  size?: number;
+  animate?: boolean;
+}
+
+export const LogoImage = ({
+  className = "",
+  size = 200,
+  animate = true,
+}: LogoImageProps) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <div
+      className={`relative inline-block ${
+        animate ? "transition-all duration-300" : ""
+      } ${className}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={{
+        width: size,
+        height: size,
+        transform: isHovered && animate ? "scale(1.05)" : "scale(1)",
+      }}
+    >
+      <Image
+        src="/logo.png"
+        alt="Website Expertz Logo"
+        width={size}
+        height={size}
+        className={`w-full h-full object-contain ${
+          animate ? "transition-all duration-300" : ""
+        } ${isHovered && animate ? "drop-shadow-lg" : ""}`}
+        priority
+      />
+      {animate && (
+        <div
+          className={`absolute inset-0 bg-gradient-to-r from-cyan-400/20 to-blue-400/20 rounded-lg transition-opacity duration-300 ${
+            isHovered ? "opacity-100" : "opacity-0"
+          }`}
+        />
+      )}
+    </div>
+  );
+};
 
 // Advanced Parallax Container
 interface ParallaxContainerProps {
@@ -158,7 +207,8 @@ export const TiltCard = ({
 
   const handleMouseLeave = () => {
     setStyle({
-      transform: "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)",
+      transform:
+        "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)",
       transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
     });
   };
@@ -247,7 +297,8 @@ export const ScrollProgress = ({
 
   useEffect(() => {
     const handleScroll = () => {
-      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const totalScroll =
+        document.documentElement.scrollHeight - window.innerHeight;
       const currentProgress = (window.scrollY / totalScroll) * 100;
       setProgress(Math.min(currentProgress, 100));
     };
@@ -421,7 +472,9 @@ export const LoadingSpinner = ({
     ),
   };
 
-  return <div className="flex items-center justify-center">{variants[variant]}</div>;
+  return (
+    <div className="flex items-center justify-center">{variants[variant]}</div>
+  );
 };
 
 // Interactive Particle Field
@@ -451,10 +504,10 @@ export const ParticleField = ({
   const particles = Array.from({ length: particleCount }).map((_, i) => {
     const baseX = Math.random() * 100;
     const baseY = Math.random() * 100;
-    
+
     let offsetX = 0;
     let offsetY = 0;
-    
+
     if (interactive && containerRef.current) {
       const rect = containerRef.current.getBoundingClientRect();
       const particleX = (baseX / 100) * rect.width;
@@ -463,10 +516,13 @@ export const ParticleField = ({
         (mousePos.x - particleX) ** 2 + (mousePos.y - particleY) ** 2
       );
       const maxDistance = 100;
-      
+
       if (distance < maxDistance) {
         const force = (1 - distance / maxDistance) * 20;
-        const angle = Math.atan2(mousePos.y - particleY, mousePos.x - particleX);
+        const angle = Math.atan2(
+          mousePos.y - particleY,
+          mousePos.x - particleX
+        );
         offsetX = Math.cos(angle) * force;
         offsetY = Math.sin(angle) * force;
       }
